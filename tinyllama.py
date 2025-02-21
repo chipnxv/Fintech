@@ -11,7 +11,7 @@ import json
 import os
 
 # Configuration
-MODEL_NAME = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"  # Only 1.1GB on disk
+MODEL_NAME = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"  
 OUTPUT_DIR = "tiny_financial_advisor"
 
 # Focused financial training data
