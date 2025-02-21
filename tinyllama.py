@@ -73,16 +73,18 @@ def train_model():
     # Training arguments optimized for small model
     training_args = TrainingArguments(
         output_dir=OUTPUT_DIR,
-        num_train_epochs=5,  # More epochs for better learning
+        num_train_epochs=5,
         per_device_train_batch_size=2,
         gradient_accumulation_steps=4,
         learning_rate=1e-4,
         fp16=torch.cuda.is_available(),
         save_strategy="epoch",
+        evaluation_strategy="epoch",  # <-- Fix: Match eval and save strategy
         logging_steps=10,
         load_best_model_at_end=True,
-        save_total_limit=1,  # Keep only the best model
-    )
+        save_total_limit=1,
+)
+
     
     # Initialize trainer
     trainer = Trainer(
