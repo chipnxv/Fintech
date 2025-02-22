@@ -1,46 +1,84 @@
 "use client"
 
+import { motion } from "framer-motion"
+import { BarChart3, Home, LineChart, Settings, TrendingUp, BookOpen, BarChart2 } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { BarChart3, BookOpen, Home, LineChart, PieChart, Settings, TrendingUp } from "lucide-react"
-import { Button } from "@/components/ui/button"
+
+const menuItems = [
+  { icon: Home, label: "Dashboard", href: "/dashboard" },
+  { icon: BarChart2, label: "Portfolio", href: "/portfolio" },
+  { icon: LineChart, label: "Market Analysis", href: "/market-analysis" },
+  { icon: TrendingUp, label: "Trading", href: "/trading" },
+  { icon: BarChart3, label: "Performance", href: "/performance" },
+  { icon: BookOpen, label: "Learn", href: "/learn" },
+]
+
+const bottomItems = [{ icon: Settings, label: "Settings", href: "/settings" }]
 
 export function Sidebar() {
   const pathname = usePathname()
 
-  const links = [
-    { name: "Dashboard", href: "/", icon: Home },
-    { name: "Portfolio", href: "/portfolio", icon: PieChart },
-    { name: "Market Analysis", href: "/analysis", icon: LineChart },
-    { name: "Trading", href: "/trading", icon: TrendingUp },
-    { name: "Performance", href: "/performance", icon: BarChart3 },
-    { name: "Learn", href: "/learn", icon: BookOpen },
-    { name: "Settings", href: "/settings", icon: Settings },
-  ]
-
   return (
-    <div className="w-64 border-r bg-gray-900 h-screen"> {/* Simplified background */}
-      <div className="p-4">
-        <h1 className="text-xl font-bold text-white mb-8">JakePlan</h1> {/* Made title white */}
-        <nav className="space-y-2">
-          {links.map((link) => {
-            const Icon = link.icon
-            return (
-              <Button
-                key={link.href}
-                variant={pathname === link.href ? "secondary" : "ghost"} // Still using 'variant', which is from your existing Button component
-                className={`w-full justify-start gap-2 ${pathname === link.href ? 'bg-gray-700' : ''}`} // Applied Tailwind default classes for active state
-                asChild
-              >
-                <Link href={link.href} className="flex items-center gap-2 text-white">
-                  <Icon className="h-4 w-4" />
-                  {link.name}
-                </Link>
-              </Button>
-            )
-          })}
-        </nav>
+    <div className="w-64 border-r border-purple-900/20 bg-background/95 backdrop-blur-md p-4">
+      <div className="flex items-center gap-2 px-2 py-4">
+        <TrendingUp className="h-6 w-6 text-purple-500" />
+        <span className="text-lg font-bold">Finvest</span>
       </div>
+      <nav className="space-y-2 pt-4">
+        {menuItems.map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors relative ${
+              pathname === item.href ? "text-purple-500" : "text-muted-foreground hover:text-purple-500"
+            }`}
+          >
+            {pathname === item.href && (
+              <motion.div
+                layoutId="active"
+                className="absolute left-0 right-0 top-0 bottom-0 rounded-lg bg-purple-500/10"
+                initial={false}
+                transition={{
+                  type: "spring",
+                  stiffness: 500,
+                  damping: 30,
+                }}
+              />
+            )}
+            <item.icon className="h-4 w-4" />
+            {item.label}
+          </Link>
+        ))}
+
+        <div className="mt-auto pt-4">
+          {bottomItems.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={`flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-colors relative ${
+                pathname === item.href ? "text-purple-500" : "text-muted-foreground hover:text-purple-500"
+              }`}
+            >
+              {pathname === item.href && (
+                <motion.div
+                  layoutId="active"
+                  className="absolute left-0 right-0 top-0 bottom-0 rounded-lg bg-purple-500/10"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 30,
+                  }}
+                />
+              )}
+              <item.icon className="h-4 w-4" />
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </nav>
     </div>
   )
 }
+
