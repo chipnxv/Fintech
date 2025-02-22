@@ -1,4 +1,7 @@
+"use client"
+
 import type React from "react"
+import { useEffect } from "react"
 import "@/styles/globals.css"
 import { Inter } from "next/font/google"
 import { Sidebar } from "@/components/sidebar"
@@ -6,16 +9,15 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
-export const metadata = {
-  title: "FinanceAI",
-  description: "AI-powered investment platform",
-}
-
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  useEffect(() => {
+    document.documentElement.style.colorScheme = "dark"
+  }, [])
+
   return (
     <html lang="en" className="dark">
       <body className={inter.className}>
@@ -29,4 +31,3 @@ export default function RootLayout({
     </html>
   )
 }
-

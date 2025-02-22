@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { BarChart3, Home, LineChart, Settings, TrendingUp, BookOpen, BarChart2 } from "lucide-react"
+import { BarChart3, Home, LineChart, Settings, TrendingUp, BookOpen, BarChart2, BarChart } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -12,6 +12,7 @@ const menuItems = [
   { icon: TrendingUp, label: "Trading", href: "/trading" },
   { icon: BarChart3, label: "Performance", href: "/performance" },
   { icon: BookOpen, label: "Learn", href: "/learn" },
+  { icon: BarChart, label: "AI Advisor", href: "/ai-advisor" }, // Added AI Advisor
 ]
 
 const bottomItems = [{ icon: Settings, label: "Settings", href: "/settings" }]
@@ -81,4 +82,3 @@ export function Sidebar() {
     </div>
   )
 }
-
