@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Badge } from "../../components/ui/badge"
+import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Sparkles, TrendingUp, BarChart } from "lucide-react"
 
 const suggestions = [
@@ -64,11 +64,11 @@ export default function AIAdvisor() {
                 <CardTitle className="flex items-center justify-between">
                   <span>{suggestion.title}</span>
                   <Badge
+                    variant="secondary"
                     className={`
                       ${suggestion.risk === "High" && "bg-red-500/10 text-red-500"}
                       ${suggestion.risk === "Medium" && "bg-yellow-500/10 text-yellow-500"}
                       ${suggestion.risk === "Low" && "bg-green-500/10 text-green-500"}
-                      badge-secondary
                     `}
                   >
                     {suggestion.risk} Risk
@@ -88,7 +88,7 @@ export default function AIAdvisor() {
                   </div>
                   <div className="flex flex-wrap gap-2">
                     {suggestion.tags.map((tag) => (
-                      <Badge key={tag} className="bg-purple-500/5">
+                      <Badge key={tag} variant="outline" className="bg-purple-500/5">
                         {tag}
                       </Badge>
                     ))}

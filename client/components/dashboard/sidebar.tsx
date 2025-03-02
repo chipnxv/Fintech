@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import { BarChart3, Home, LineChart, Settings, TrendingUp, BookOpen, BarChart2, BarChart } from "lucide-react"
+import { BarChart3, Home, LineChart, Settings, TrendingUp, BookOpen, BarChart2, Sparkles } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -12,7 +12,7 @@ const menuItems = [
   { icon: TrendingUp, label: "Trading", href: "/trading" },
   { icon: BarChart3, label: "Performance", href: "/performance" },
   { icon: BookOpen, label: "Learn", href: "/learn" },
-  { icon: BarChart, label: "AI Advisor", href: "/ai-advisor" }, // Added AI Advisor
+  { icon: Sparkles, label: "AI Advisor", href: "/ai-advisor" },
 ]
 
 const bottomItems = [{ icon: Settings, label: "Settings", href: "/settings" }]
@@ -24,7 +24,7 @@ export function Sidebar() {
     <div className="w-64 border-r border-purple-900/20 bg-background/95 backdrop-blur-md p-4">
       <div className="flex items-center gap-2 px-2 py-4">
         <TrendingUp className="h-6 w-6 text-purple-500" />
-        <span className="text-lg font-bold">Finvest</span>
+        <span className="text-lg font-bold">Vestern</span>
       </div>
       <nav className="space-y-2 pt-4">
         {menuItems.map((item) => (
@@ -63,7 +63,7 @@ export function Sidebar() {
             >
               {pathname === item.href && (
                 <motion.div
-                  layoutId="active"
+                  layoutId="active-bottom"
                   className="absolute left-0 right-0 top-0 bottom-0 rounded-lg bg-purple-500/10"
                   initial={false}
                   transition={{
@@ -82,3 +82,4 @@ export function Sidebar() {
     </div>
   )
 }
+
